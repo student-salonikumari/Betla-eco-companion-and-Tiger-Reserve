@@ -1,0 +1,2851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Explore Tourist Destinations | EcoCompanion</title>
+
+<style>
+
+:root{
+    --forest:#073528;
+    --green:#0e5a3e;
+    --mint:#eaf5ef;
+    --gold:#d8b765;
+    --ink:#183229;
+    --muted:#66776f;
+    --line:#dfe9e3;
+    --card:#fff;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:#f3f7f4;
+    color:var(--ink);
+    line-height:1.6;
+}
+
+/* ================= NAVBAR ================= */
+
+.nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    padding:15px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(5,34,26,.96);
+    backdrop-filter:blur(16px);
+    color:#fff;
+}
+
+.brand{
+    font-weight:950;
+    letter-spacing:.7px;
+    font-size:20px;
+}
+
+.brand small{
+    display:block;
+    color:#b9d7c9;
+    font-size:9px;
+    letter-spacing:2px;
+    margin-top:2px;
+}
+
+.navlinks{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.navlinks a{
+    color:#eaf6ef;
+    text-decoration:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+.navlinks a:hover{
+    color:#e6c978;
+}
+
+.back-btn{
+    border:1px solid rgba(255,255,255,.25);
+    padding:8px 13px;
+    border-radius:10px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:590px;
+    padding:105px 6% 125px;
+    color:#fff;
+    position:relative;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(2,27,19,.95),
+        rgba(2,27,19,.62),
+        rgba(2,27,19,.18)
+    ),
+    url('https://forest.jharkhand.gov.in/files/places-to-visit/Betla-National-Park.jpg')
+    center/cover;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0;
+    height:120px;
+    background:linear-gradient(transparent,#f3f7f4);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+}
+
+.eyebrow{
+    display:inline-flex;
+    padding:7px 13px;
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:999px;
+    background:rgba(255,255,255,.09);
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.hero h1{
+    font-size:clamp(44px,7vw,80px);
+    line-height:1;
+    letter-spacing:-3px;
+    margin:22px 0;
+}
+
+.hero p{
+    max-width:760px;
+    font-size:18px;
+    color:#dcece5;
+}
+
+.search{
+    margin-top:30px;
+    max-width:790px;
+    background:#fff;
+    padding:7px;
+    border-radius:18px;
+    display:flex;
+    box-shadow:0 22px 65px rgba(0,0,0,.28);
+}
+
+.search input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:14px 16px;
+    font-size:15px;
+    border-radius:12px;
+}
+
+.search button{
+    border:0;
+    background:var(--green);
+    color:#fff;
+    padding:0 22px;
+    border-radius:13px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    position:relative;
+    z-index:5;
+    margin:-62px 6% 60px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.stat{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 18px 55px rgba(10,48,33,.1);
+}
+
+.stat b{
+    font-size:28px;
+    color:var(--forest);
+    display:block;
+}
+
+.stat span{
+    font-size:12px;
+    color:var(--muted);
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:0 6% 75px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:25px;
+    margin-bottom:25px;
+}
+
+.section-title h2{
+    font-size:40px;
+    letter-spacing:-1.3px;
+}
+
+.section-title p{
+    max-width:650px;
+    color:var(--muted);
+}
+
+/* ================= FILTERS ================= */
+
+.filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-bottom:28px;
+}
+
+.filter{
+    border:1px solid var(--line);
+    background:#fff;
+    color:#36574b;
+    padding:10px 16px;
+    border-radius:999px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.filter.active{
+    background:var(--forest);
+    color:#fff;
+    border-color:var(--forest);
+}
+
+/* ================= DESTINATION GRID ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:21px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 12px 38px rgba(8,48,32,.07);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 25px 65px rgba(8,48,32,.15);
+}
+
+.image{
+    height:225px;
+    position:relative;
+    background:#dfe9e3;
+}
+
+.image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.photo-source,
+.badge{
+    position:absolute;
+    top:14px;
+    padding:6px 9px;
+    border-radius:999px;
+    font-size:9px;
+    font-weight:950;
+    letter-spacing:.5px;
+}
+
+.photo-source{
+    right:14px;
+    background:rgba(255,255,255,.92);
+    color:#14513a;
+}
+
+.badge{
+    left:14px;
+    background:rgba(3,30,22,.82);
+    color:#fff;
+}
+
+.card-body{
+    padding:20px;
+}
+
+.card h3{
+    font-size:22px;
+    line-height:1.2;
+    margin-bottom:4px;
+}
+
+.loc{
+    font-size:12px;
+    color:#77857e;
+    margin-bottom:12px;
+}
+
+.desc{
+    font-size:14px;
+    color:#596a62;
+    min-height:72px;
+}
+
+.meta{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin:16px 0;
+}
+
+.meta div{
+    background:#f3f8f5;
+    padding:11px;
+    border-radius:13px;
+}
+
+.meta small,
+.info small{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+    font-size:9px;
+    color:#77857e;
+}
+
+.meta strong{
+    font-size:12px;
+    display:block;
+}
+
+.hygiene-mini{
+    margin:12px 0;
+    padding:11px 12px;
+    border-radius:12px;
+    background:#f8faf8;
+    border:1px solid #e6eee9;
+    font-size:11px;
+    color:#52655c;
+}
+
+.hygiene-mini b{
+    color:#174d39;
+}
+
+.actions{
+    display:flex;
+    gap:9px;
+}
+
+.actions button{
+    flex:1;
+    border:0;
+    padding:11px;
+    border-radius:12px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.details{
+    background:var(--forest);
+    color:#fff;
+}
+
+.directions{
+    background:#edf5ef;
+    color:#174d39;
+}
+
+/* ================= VERIFIED INFORMATION ================= */
+
+.facts{
+    margin-top:60px;
+    background:linear-gradient(135deg,#072e22,#14523b);
+    color:#fff;
+    border-radius:30px;
+    padding:36px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    box-shadow:0 28px 70px rgba(5,38,27,.18);
+}
+
+.facts h2{
+    font-size:34px;
+    margin:15px 0 8px;
+}
+
+.facts p{
+    color:#d1e4da;
+}
+
+.fact-list{
+    display:grid;
+    gap:10px;
+    margin-top:20px;
+}
+
+.fact{
+    padding:13px 15px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:14px;
+    font-size:13px;
+}
+
+.fact b{
+    color:#f0d27d;
+}
+
+/* ================= REVIEWS ================= */
+
+.review-panel{
+    margin-top:22px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:30px;
+    color:var(--ink);
+}
+
+.review-panel h2{
+    font-size:32px;
+}
+
+.review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:20px;
+}
+
+.review-card{
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#fbfdfb;
+}
+
+.review-card h3{
+    font-size:17px;
+}
+
+.rating{
+    font-size:24px;
+    font-weight:950;
+    color:var(--forest);
+    margin:5px 0;
+}
+
+.review-card p{
+    font-size:12px;
+    color:#61716a;
+}
+
+.review-card a,
+.source-link{
+    display:inline-block;
+    margin-top:10px;
+    color:#126044;
+    font-size:11px;
+    font-weight:850;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    z-index:2000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(850px,100%);
+    max-height:92vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:28px;
+}
+
+.modal-img{
+    height:290px;
+    position:relative;
+}
+
+.modal-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:15px;
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:rgba(0,0,0,.58);
+    color:#fff;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.modal-content{
+    padding:28px;
+}
+
+.modal-content h2{
+    font-size:35px;
+    line-height:1.1;
+}
+
+.chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:13px 0 18px;
+}
+
+.chip{
+    padding:7px 11px;
+    border-radius:999px;
+    background:#edf5ef;
+    color:#205c43;
+    font-size:11px;
+    font-weight:850;
+}
+
+.info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.info div{
+    background:#f4f8f5;
+    padding:14px;
+    border-radius:14px;
+}
+
+.info strong{
+    font-size:13px;
+}
+
+.source-box{
+    margin-top:18px;
+    padding:15px;
+    background:#f5faf6;
+    border-left:4px solid #1b6849;
+    border-radius:10px;
+    font-size:12px;
+    color:#4d6158;
+}
+
+.source-box a{
+    color:#0e5b3f;
+    font-weight:850;
+}
+
+.safety{
+    margin-top:15px;
+    padding:15px;
+    background:#fff8e8;
+    border-left:4px solid #d7b45e;
+    border-radius:10px;
+    color:#5e5339;
+    font-size:12px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#061f17;
+    color:#a9c6b8;
+    padding:32px 6%;
+    text-align:center;
+    font-size:12px;
+}
+
+/* ================= PROFESSIONAL SEARCH ================= */
+
+.search{
+    align-items:center;
+    gap:4px;
+    border:1px solid rgba(255,255,255,.25);
+}
+
+.search:focus-within{
+    box-shadow:0 0 0 4px rgba(216,183,101,.18),0 22px 65px rgba(0,0,0,.28);
+}
+
+.search-icon{
+    width:42px;
+    min-width:42px;
+    display:grid;
+    place-items:center;
+    color:#55776a;
+    font-size:24px;
+    line-height:1;
+}
+
+.search input{
+    min-width:0;
+    color:#183229;
+    background:transparent;
+}
+
+.search input::placeholder{
+    color:#81918a;
+}
+
+.search button{
+    min-height:46px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    transition:.2s ease;
+}
+
+.search button:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.08);
+}
+
+.search-arrow{
+    font-size:16px;
+}
+
+.search-hint{
+    margin-top:8px;
+    font-size:11px;
+    color:#d9e9e2;
+    opacity:.92;
+}
+
+.search-hint b{
+    color:#f0d27d;
+}
+
+/* Search result emphasis */
+.card.search-hit{
+    animation:destinationPulse 1.2s ease;
+    box-shadow:0 0 0 3px rgba(14,90,62,.18),0 25px 65px rgba(8,48,32,.16);
+}
+
+@keyframes destinationPulse{
+    0%{transform:translateY(10px) scale(.985);opacity:.65}
+    45%{transform:translateY(-4px) scale(1.01);opacity:1}
+    100%{transform:translateY(0) scale(1);opacity:1}
+}
+
+/* ================= MOBILE NAV ================= */
+
+.menu-toggle{
+    display:none;
+    width:44px;
+    height:44px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:13px;
+    background:rgba(255,255,255,.08);
+    cursor:pointer;
+    padding:9px;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+}
+
+.menu-toggle span{
+    display:block;
+    width:100%;
+    height:2px;
+    border-radius:10px;
+    background:#fff;
+    transition:.25s ease;
+}
+
+.menu-toggle.active span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity:0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+}
+
+.navlinks a{
+    white-space:nowrap;
+}
+
+@media(max-width:650px){
+
+    .nav{
+        min-height:64px;
+        padding:10px 5%;
+        display:grid;
+        grid-template-columns:1fr auto;
+        gap:10px;
+        align-items:center;
+    }
+
+    .brand{
+        min-width:0;
+        font-size:17px;
+        line-height:1.1;
+    }
+
+    .brand small{
+        font-size:7px;
+        letter-spacing:1.5px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        max-width:245px;
+    }
+
+    .menu-toggle{
+        display:flex;
+        justify-self:end;
+    }
+
+    .navlinks{
+        grid-column:1 / -1;
+        display:none;
+        width:100%;
+        padding:10px;
+        gap:7px;
+        flex-direction:column;
+        align-items:stretch;
+        background:rgba(3,27,21,.98);
+        border:1px solid rgba(255,255,255,.12);
+        border-radius:16px;
+        box-shadow:0 18px 40px rgba(0,0,0,.22);
+    }
+
+    .navlinks.open{
+        display:flex;
+        animation:navDrop .22s ease both;
+    }
+
+    @keyframes navDrop{
+        from{opacity:0;transform:translateY(-6px)}
+        to{opacity:1;transform:translateY(0)}
+    }
+
+    .navlinks a{
+        width:100%;
+        padding:11px 13px;
+        border-radius:11px;
+        font-size:12px;
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+    }
+
+    .navlinks a:hover{
+        background:rgba(255,255,255,.10);
+    }
+
+    .navlinks .back-btn{
+        text-align:center;
+        border-color:rgba(216,183,101,.35);
+    }
+
+    .hero{
+        min-height:560px;
+        padding:72px 5% 105px;
+    }
+
+    .hero-content{
+        width:100%;
+    }
+
+    .eyebrow{
+        font-size:9px;
+        letter-spacing:1px;
+        padding:6px 10px;
+    }
+
+    .hero h1{
+        font-size:clamp(38px,12vw,52px);
+        letter-spacing:-2px;
+        margin:18px 0;
+    }
+
+    .hero p{
+        font-size:14px;
+        line-height:1.65;
+    }
+
+    .search{
+        width:100%;
+        max-width:none;
+        padding:6px;
+        border-radius:16px;
+        margin-top:22px;
+        display:grid;
+        grid-template-columns:36px 1fr;
+        gap:2px;
+    }
+
+    .search-icon{
+        width:36px;
+        min-width:36px;
+        font-size:22px;
+    }
+
+    .search input{
+        width:100%;
+        min-height:44px;
+        padding:10px 8px;
+        font-size:14px;
+    }
+
+    .search button{
+        grid-column:1 / -1;
+        width:100%;
+        min-height:44px;
+        margin-top:3px;
+        border-radius:12px;
+    }
+
+    .search-hint{
+        font-size:10px;
+        line-height:1.4;
+        margin-top:7px;
+    }
+
+    .stats{
+        margin:-42px 5% 38px;
+        gap:9px;
+    }
+
+    .stat{
+        padding:15px 12px;
+        border-radius:16px;
+    }
+
+    .stat b{
+        font-size:21px;
+    }
+
+    .stat span{
+        font-size:10px;
+    }
+
+    .filters{
+        gap:7px;
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        padding-bottom:5px;
+        scrollbar-width:none;
+    }
+
+    .filters::-webkit-scrollbar{
+        display:none;
+    }
+
+    .filter{
+        flex:0 0 auto;
+        padding:9px 13px;
+        font-size:11px;
+    }
+
+    .card{
+        border-radius:20px;
+    }
+
+    .image{
+        height:210px;
+    }
+
+    .card-body{
+        padding:17px;
+    }
+
+    .card h3{
+        font-size:20px;
+    }
+
+    .desc{
+        min-height:auto;
+    }
+
+    .actions button{
+        min-height:43px;
+    }
+
+    .facts{
+        border-radius:22px;
+        padding:20px;
+    }
+
+    .facts h2{
+        font-size:28px;
+    }
+
+    .review-panel{
+        padding:20px;
+        border-radius:22px;
+    }
+
+    .review-panel h2{
+        font-size:27px;
+    }
+
+    .modal{
+        padding:10px;
+    }
+
+    .modal-box{
+        border-radius:22px;
+        max-height:94vh;
+    }
+
+    .modal-img{
+        height:190px;
+    }
+
+    .modal-content{
+        padding:20px;
+    }
+
+    .modal-content h2{
+        font-size:28px;
+    }
+
+    .info{
+        gap:9px;
+    }
+
+}
+
+@media(max-width:420px){
+
+    .nav{
+        padding:9px 4%;
+    }
+
+    .brand{
+        font-size:15px;
+    }
+
+    .brand small{
+        max-width:205px;
+        font-size:6.5px;
+    }
+
+    .hero{
+        padding-top:64px;
+    }
+
+    .hero h1{
+        font-size:39px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat{
+        padding:13px 10px;
+    }
+
+    .stat b{
+        font-size:19px;
+    }
+
+    .image{
+        height:195px;
+    }
+
+    .meta{
+        grid-template-columns:1fr;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .modal-img{
+        height:175px;
+    }
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:950px){
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .facts{
+        grid-template-columns:1fr;
+    }
+
+    .review-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .nav{
+        padding:12px 5%;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+    }
+
+    .navlinks{
+        display:flex;
+        width:100%;
+        gap:7px;
+        flex-wrap:wrap;
+    }
+
+    .navlinks a{
+        font-size:11px;
+        padding:6px 8px;
+    }
+
+    .back-btn{
+        padding:7px 10px;
+    }
+
+    .hero{
+        padding-top:75px;
+    }
+
+    .search{
+        flex-direction:column;
+    }
+
+    .search button{
+        padding:13px;
+    }
+
+    .stats{
+        margin:-48px 5% 40px;
+    }
+
+    .section{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-title{
+        display:block;
+    }
+
+    .section-title h2{
+        font-size:32px;
+        margin-bottom:7px;
+    }
+
+    .review-grid,
+    .info{
+        grid-template-columns:1fr;
+    }
+
+    .facts{
+        padding:25px;
+    }
+
+    .modal-img{
+        height:220px;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+}
+
+/* ================= EXTRA MOBILE NAV FIX ================= */
+
+@media(max-width:420px){
+
+    .brand{
+        font-size:18px;
+    }
+
+    .brand small{
+        font-size:8px;
+    }
+
+    .navlinks{
+        gap:5px;
+    }
+
+    .navlinks a{
+        font-size:10px;
+        padding:6px 7px;
+    }
+
+}
+
+</style>
+<style>
+
+/* ===== Premium navbar interaction polish ===== */
+.navlinks a{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 13px;
+    border-radius:12px;
+    font-weight:600;
+    letter-spacing:.15px;
+    isolation:isolate;
+    overflow:hidden;
+    transition:color .28s ease, background .28s ease, transform .22s ease, box-shadow .28s ease;
+}
+.navlinks a::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:linear-gradient(135deg,rgba(230,201,120,.20),rgba(230,201,120,.06));
+    opacity:0;
+    transform:scale(.88);
+    transition:opacity .28s ease,transform .28s ease;
+    z-index:-1;
+}
+.navlinks a::after{
+    content:"";
+    position:absolute;
+    left:13px;
+    right:13px;
+    bottom:5px;
+    height:2px;
+    border-radius:5px;
+    background:#e6c978;
+    transform:scaleX(0);
+    transform-origin:center;
+    transition:transform .28s cubic-bezier(.2,.8,.2,1);
+}
+.navlinks a:hover{
+    color:#ffe8a1;
+    transform:translateY(-2px);
+    text-shadow:0 4px 16px rgba(230,201,120,.18);
+}
+.navlinks a:hover::before{opacity:1;transform:scale(1)}
+.navlinks a:hover::after{transform:scaleX(1)}
+.navlinks a:active{transform:translateY(0) scale(.96)}
+.navlinks a:focus-visible{
+    outline:2px solid #e6c978;
+    outline-offset:3px;
+}
+.navlinks a.nav-active{
+    color:#ffe8a1;
+    background:rgba(230,201,120,.12);
+    box-shadow:inset 0 0 0 1px rgba(230,201,120,.16);
+}
+.navlinks a.nav-active::after{transform:scaleX(1)}
+.navlinks .back-btn{
+    border:1px solid rgba(230,201,120,.45);
+    background:linear-gradient(135deg,rgba(230,201,120,.13),rgba(255,255,255,.04));
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
+.navlinks .back-btn::after{display:none}
+.navlinks .back-btn:hover{
+    border-color:#e6c978;
+    background:linear-gradient(135deg,rgba(230,201,120,.25),rgba(255,255,255,.08));
+    box-shadow:0 8px 24px rgba(0,0,0,.2);
+}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
+@media(max-width:850px){
+    .navlinks a{width:100%;justify-content:flex-start;padding:13px 15px;border-radius:12px}
+    .navlinks a::after{left:15px;right:auto;width:36px;bottom:7px}
+    .navlinks .back-btn{justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+    .navlinks a,.navlinks a::before,.navlinks a::after{transition:none!important}
+    html{scroll-behavior:auto}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="nav">
+
+    <div class="brand">
+        🌿 ECOCOMPANION
+        <small>BETLA & PALAMU TIGER RESERVE</small>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" type="button"
+            aria-label="Open navigation menu" aria-expanded="false"
+            onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+    </button>
+
+    <div class="navlinks" id="mainNavLinks">
+
+        <a href="Betla.html" onclick="closeMobileMenu()">Home</a>
+
+        <a href="#destinations" onclick="closeMobileMenu()">Explore</a>
+
+        <a href="#reviews" onclick="closeMobileMenu()">Visitor Reviews</a>
+
+        <a href="Betla.html" class="back-btn" onclick="closeMobileMenu()">
+            <span>←</span> Back to Home
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <span class="eyebrow">
+            Smart Eco-Tourism • Hackathon 2026
+        </span>
+
+        <h1>
+            Explore the Wild.<br>
+            Know Every Place.
+        </h1>
+
+        <p>
+            Explore important tourist destinations across Betla,
+            Palamu, Netarhat and Latehar through one professional guide.
+            Discover locations, verified distance references,
+            attractions, safety information and visitor feedback.
+        </p>
+
+        <div class="search" role="search">
+            <span class="search-icon">⌕</span>
+            <input
+                id="search"
+                type="search"
+                autocomplete="off"
+                placeholder="Search Betla, waterfall, fort, sunset, wildlife..."
+                aria-label="Search tourist destinations"
+            >
+            <button type="button" onclick="searchPlaces()">
+                <span>Search</span>
+                <span class="search-arrow">↗</span>
+            </button>
+        </div>
+        <div class="search-hint" id="searchHint">
+            Press <b>Enter</b> or tap Search to jump to the destination.
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+    <div class="stat">
+        <b id="countStat">14</b>
+        <span>Featured destinations</span>
+    </div>
+
+    <div class="stat">
+        <b>5</b>
+        <span>Experience categories</span>
+    </div>
+
+    <div class="stat">
+        <b>3 km</b>
+        <span>Betla → Palamu Fort</span>
+    </div>
+
+    <div class="stat">
+        <b>100%</b>
+        <span>Source-labelled destination facts</span>
+    </div>
+
+</section>
+
+
+<!-- ================= DESTINATIONS ================= -->
+
+<section class="section" id="destinations">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                Discover Tourist Destinations
+            </h2>
+
+            <p>
+                Destination information is based on verified
+                tourism and forest sources wherever available.
+                Road distances are not presented as exact figures
+                when a verified source was not available.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILTERS -->
+
+    <div class="filters">
+
+        <button
+            class="filter active"
+            onclick="filterPlaces('all',this)"
+        >
+            All
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterPlaces('wildlife',this)"
+        >
+            🦌 Wildlife
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterPlaces('heritage',this)"
+        >
+            🏛 Heritage
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterPlaces('waterfall',this)"
+        >
+            💧 Waterfalls
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterPlaces('scenic',this)"
+        >
+            🌄 Scenic
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterPlaces('culture',this)"
+        >
+            🛕 Culture
+        </button>
+
+    </div>
+
+
+    <div class="grid" id="grid"></div>
+
+
+    <!-- ================= VERIFIED INFORMATION ================= -->
+
+    <div class="facts">
+
+        <div>
+
+            <span class="eyebrow">
+                VERIFIED VISITOR INFORMATION
+            </span>
+
+            <h2>
+                Before You Visit
+            </h2>
+
+            <p>
+                EcoCompanion is designed to provide visitors with
+                practical, source-backed information instead of
+                unverified claims.
+            </p>
+
+
+            <div class="fact-list">
+
+                <div class="fact">
+
+                    🌲 <b>Betla:</b>
+                    According to the Forest Department,
+                    Betla is Jharkhand's only National Park.
+                    It covers approximately 226.33 sq km and
+                    forms part of the core area of Palamau Tiger Reserve.
+
+                </div>
+
+
+                <div class="fact">
+
+                    🏛 <b>Palamu Fort:</b>
+                    According to the Latehar District Administration,
+                    the fort complex is around 3 km from Betla National Park
+                    and consists of two ruined forts.
+
+                </div>
+
+
+                <div class="fact">
+
+                    💧 <b>Suga Bandh:</b>
+                    Government sources place Suga Bandh near Baresand
+                    and approximately 60 km from Betla.
+                    It lies along the Betla–Netarhat route.
+
+                </div>
+
+
+                <div class="fact">
+
+                    🌄 <b>Netarhat:</b>
+                    Jharkhand Tourism describes Netarhat as a hill
+                    destination at approximately 3,800 ft elevation,
+                    known for sunrise, sunset, pine forests and pear gardens.
+
+                </div>
+
+
+                <div class="fact">
+
+                    ⚠️ <b>Waterfall Safety:</b>
+                    Rocks can become slippery and water conditions
+                    can change quickly during heavy rainfall.
+                    Visitors should follow local safety instructions,
+                    avoid dangerous edges and never litter.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SOURCE POLICY ================= -->
+
+        <div>
+
+            <span class="eyebrow">
+                SOURCE POLICY
+            </span>
+
+            <h2>
+                No Fake Hygiene Score
+            </h2>
+
+            <p>
+                Overall attraction ratings are not treated as
+                cleanliness ratings. A destination-level hygiene
+                score is shown only when reliable hygiene-specific
+                evidence is available.
+            </p>
+
+
+            <div class="fact-list">
+
+                <div class="fact">
+
+                    🧼 <b>Cleanliness:</b>
+                    When verified destination-level hygiene data
+                    is unavailable, EcoCompanion clearly says so
+                    instead of creating a fake score.
+
+                </div>
+
+
+                <div class="fact">
+
+                    ⭐ <b>Visitor Rating:</b>
+                    Public review ratings are clearly labelled
+                    as overall attraction ratings.
+
+                </div>
+
+
+                <div class="fact">
+
+                    📍 <b>Distance:</b>
+                    Only published or verified distance references
+                    are displayed. Unverified road distances are
+                    not presented as exact figures.
+
+                </div>
+
+
+                <div class="fact">
+
+                    📷 <b>Photos:</b>
+                    Destination photographs are linked to
+                    government tourism or forest sources whenever
+                    available and are not AI-generated images.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= VISITOR REVIEWS ================= -->
+
+<section class="section" id="reviews">
+
+    <div class="review-panel">
+
+        <h2>
+            Real Visitor Review Snapshot
+        </h2>
+
+        <p class="loc">
+            These are overall attraction ratings, not hygiene scores.
+        </p>
+
+
+        <div class="review-grid">
+
+
+            <div class="review-card">
+
+                <h3>
+                    Betla National Park
+                </h3>
+
+                <div class="rating">
+                    3.7 / 5 ★
+                </div>
+
+                <p>
+                    Tripadvisor currently lists 24 reviews.
+                    Recent visitor feedback discusses the forest,
+                    wildlife and overall experience, with mixed
+                    experiences across reviews.
+                </p>
+
+               <!---<a
+                    href="https://www.tripadvisor.in/Attraction_Review-g4163877-d2436557-Reviews-Betla_National_Park-Palamu_District_Jharkhand.html"
+                    target="_blank"
+                >
+                    View Tripadvisor Source ↗
+                </a>-->
+
+            </div>
+
+
+            <div class="review-card">
+
+                <h3>
+                    Magnolia Sunset Point
+                </h3>
+
+                <div class="rating">
+                    4.4 / 5 ★
+                </div>
+
+                <p>
+                    Visitor feedback highlights the sunset and
+                    panoramic valley views. Some visitor comments
+                    also mention washroom availability and the
+                    need to maintain cleanliness.
+                </p>
+
+                <a
+                    href="https://www.tripadvisor.in/Attraction_Review-g2288598-d3731125-Reviews-Magnolia_Sunset_Point-Netarhat_Latehar_District_Jharkhand.html"
+                    target="_blank"
+                >
+                    View Tripadvisor Source ↗
+                </a>
+
+            </div>
+
+
+            <div class="review-card">
+
+                <h3>
+                    Netarhat
+                </h3>
+
+                <div class="rating">
+                    25 Reviews
+                </div>
+
+                <p>
+                    Tripadvisor currently lists 25 reviews for
+                    Netarhat. Reviews discuss the hill landscape,
+                    forests, sunrise, sunset and nearby attractions.
+                </p>
+
+                <a
+                    href="https://www.tripadvisor.in/Attraction_Review-g297626-d1205932-Reviews-Netarhat_Queen_of_Chotanagpur-Jharkhand.html"
+                    target="_blank"
+                >
+                    View Tripadvisor Source ↗
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    EcoCompanion • Betla & Palamu Tiger Reserve
+    • Smart Eco-Tourism Platform • Hackathon 2026
+
+</footer>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+    class="modal"
+    id="modal"
+    onclick="outside(event)"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-img">
+
+            <img
+                id="mImg"
+                alt="Destination photograph"
+            >
+
+            <button
+                class="close"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-content">
+
+            <h2 id="mTitle"></h2>
+
+            <div
+                id="mLoc"
+                class="loc"
+            ></div>
+
+            <div
+                id="mChips"
+                class="chips"
+            ></div>
+
+            <p id="mDesc"></p>
+
+
+            <div class="info">
+
+                <div>
+
+                    <small>
+                        Distance / Route Reference
+                    </small>
+
+                    <strong id="mDistance"></strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Famous For
+                    </small>
+
+                    <strong id="mFamous"></strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Best For
+                    </small>
+
+                    <strong id="mBest"></strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Cleanliness / Hygiene
+                    </small>
+
+                    <strong id="mHygiene"></strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Visitor Rating
+                    </small>
+
+                    <strong id="mRating"></strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Official Source
+                    </small>
+
+                    <strong id="mSource"></strong>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="source-box"
+                id="mSourceBox"
+            ></div>
+
+
+            <div
+                class="safety"
+                id="mSafety"
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ================= DESTINATION DATA ================= */
+
+const places = [
+
+{
+    name:'Betla National Park',
+    cat:'wildlife',
+    type:'Wildlife',
+
+    loc:'Latehar, Jharkhand',
+
+    distance:'226.33 sq km park; approximately 170 km from Ranchi by road',
+
+    famous:'Wildlife, forest landscape, safari, elephants, deer and bison',
+
+    best:'Safari • Wildlife • Nature',
+
+    hygiene:'No verified destination-level hygiene score published',
+
+    rating:'3.7/5 • 24 Tripadvisor reviews',
+
+    img:'https://forest.jharkhand.gov.in/files/places-to-visit/Betla-National-Park.jpg',
+
+    desc:
+    'Betla is the main tourism centre of Palamau Tiger Reserve and Jharkhand’s only National Park. The Forest Department lists it as part of the PTR core area.',
+
+    source:'Jharkhand Forest Department',
+
+    sourceUrl:
+    'https://forest.jharkhand.gov.in/wings_wildlife_protectedarea_betla.aspx',
+
+    safety:
+    'Follow forest rules, do not feed wildlife, avoid loud disturbance and keep waste with you or in designated bins.'
+},
+
+
+{
+    name:'Palamu Fort',
+    cat:'heritage',
+    type:'Heritage',
+
+    loc:'Barwadih • Auranga River',
+
+    distance:
+    'Around 3 km from Betla National Park',
+
+    famous:
+    'Old and New Fort ruins and Chero history',
+
+    best:
+    'History • Heritage • Photography',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'Public review sample is too small for a reliable hygiene assessment',
+
+    img:
+    'https://wpmedia.prabhatkhabar.com/uploads/2024/01/palamu-kila-old-latehar.jpg',
+
+    desc:
+    'Palamu Fort consists of two ruined forts. The Latehar district page places the complex around 3 km from Betla National Park.',
+
+    source:
+    'Latehar District Administration',
+
+    sourceUrl:
+    'https://latehar.nic.in/tourist-place/palamu-fort/',
+
+    safety:
+    'Explore the ruins carefully and avoid climbing unstable masonry.'
+},
+
+
+{
+    name:'Suga Bandh Waterfall',
+    cat:'waterfall',
+    type:'Waterfall',
+
+    loc:'Near Baresand • Betla–Netarhat Route',
+
+    distance:
+    'About 60 km from Betla',
+
+    famous:
+    'Forest waterfall, rocky landscape and scenic cascade',
+
+    best:
+    'Nature • Photography • Short Outing',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'No reliable current attraction rating used',
+
+    img:
+    'https://tourism.jharkhand.gov.in/cms/Application/uploadDocuments/location/1140X320/location20160229_141627.jpg',
+
+    desc:
+    'Suga Bandh is near Baresand and close to Palamu Tiger Reserve. It is located along the Betla–Netarhat route.',
+
+    source:
+    'Jharkhand Government / Forest Sources',
+
+    sourceUrl:
+    'https://cm.jharkhand.gov.in/suga-bandh-waterfall',
+
+    safety:
+    'During rain, rocks can become slippery. Stay in safe viewing areas and do not litter.'
+},
+
+
+{
+    name:'Mirchaiya Falls',
+    cat:'waterfall',
+    type:'Waterfall',
+
+    loc:'Garu • Betla Tiger Project Area',
+
+    distance:
+    'Approximately 3 km from Garu block',
+
+    famous:
+    'North Koel tributary and black granite rock formation',
+
+    best:
+    'Nature • Photography • Road Trip',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'No reliable current attraction rating used',
+
+    img:
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLIFB3yOc9VulRpHeBz01NvJZDZlAzJSYdaxng1BfKtuwGfNxnN7WXeNcD&s=10',
+
+    desc:
+    'Mirchaiya Falls lies within the Betla tiger project area and is formed on a tributary of the North Koel River.',
+
+    source:
+    'Jharkhand Tourism',
+
+    sourceUrl:
+    'https://tourism.jharkhand.gov.in/destinationDetails/69',
+
+    safety:
+    'Follow local and forest guidance and avoid risky rock surfaces.'
+},
+
+
+{
+    name:'Netarhat',
+    cat:'scenic',
+    type:'Hill Destination',
+
+    loc:'Latehar District • Chotanagpur Plateau',
+
+    distance:
+    'Approximately 145 km from Ranchi by road',
+
+    famous:
+    'Sunrise, sunset, pine forests, pear gardens and viewpoints',
+
+    best:
+    'Scenic Drive • Sunrise • Sunset',
+
+    hygiene:
+    'No single destination-level hygiene score used',
+
+    rating:
+    '25 Tripadvisor reviews currently listed',
+
+    img:
+    'https://forest.jharkhand.gov.in/files/places-to-visit/Koel-View-Point.jpg',
+
+    desc:
+    'Netarhat is described by Jharkhand Tourism as the highest point of the Chotanagpur Plateau, at around 3,800 ft above sea level.',
+
+    source:
+    'Jharkhand Tourism',
+
+    sourceUrl:
+    'https://tourism.jharkhand.gov.in/destinationDetails/172',
+
+    safety:
+    'For viewpoints, stay behind barriers and use marked safe areas. Be cautious in fog or rain.'
+},
+
+
+{
+    name:'Sunrise Point',
+    cat:'scenic',
+    type:'Viewpoint',
+
+    loc:'Netarhat',
+
+    distance:
+    'Approximately 0.5–1 km from Netarhat Bus Stand',
+
+    famous:
+    'Sunrise and panoramic hill views',
+
+    best:
+    'Sunrise • Photography',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'Limited public review data',
+
+    img:
+    'https://forest.jharkhand.gov.in/files/places-to-visit/Sunrise-Point-Netarhat.jpg',
+
+    desc:
+    'Sunrise Point is a popular viewpoint near Hotel Prabhat Vihar and is known for panoramic morning views.',
+
+    source:
+    'Jharkhand Tourism',
+
+    sourceUrl:
+    'https://tourism.jharkhand.gov.in/destination-map/58',
+
+    safety:
+    'Arrive before sunrise and use safe viewing areas. Avoid standing near edges.'
+},
+
+
+{
+    name:'Koel View Point',
+    cat:'scenic',
+    type:'Viewpoint',
+
+    loc:'Netarhat',
+
+    distance:
+    'About 3 km from Netarhat town',
+
+    famous:
+    'Valley and Koel River views',
+
+    best:
+    'Scenic View • Photography • Sunset',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'Limited public review data',
+
+    img:
+    'https://forest.jharkhand.gov.in/files/places-to-visit/Koel-View-Point.jpg',
+
+    desc:
+    'Koel View Point is one of the named attractions in the official Netarhat tourism information.',
+
+    source:
+    'Jharkhand Tourism',
+
+    sourceUrl:
+    'https://tourism.jharkhand.gov.in/destinationDetails/172',
+
+    safety:
+    'Keep away from cliff edges and follow viewpoint barriers.'
+},
+
+
+{
+    name:'Magnolia Sunset Point',
+    cat:'scenic',
+    type:'Viewpoint',
+
+    loc:'Netarhat',
+
+    distance:
+    'About 10 km from Netarhat town area',
+
+    famous:
+    'Sunset and panoramic valley views',
+
+    best:
+    'Sunset • Photography • Relaxation',
+
+    hygiene:
+    'No verified hygiene score; visitor comments mention washroom availability and the need to maintain cleanliness',
+
+    rating:
+    '4.4/5 • Tripadvisor review listing',
+
+    img:
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9cunkN699FrN4YuMt-vXf6R_I9WQLRGe08Hp4Rz7attxTjF69TwpQVkrs&s=10',
+
+    desc:
+    'Magnolia Sunset Point is one of the major viewpoints around Netarhat and is known for sunset and panoramic valley views.',
+
+    source:
+    'Jharkhand Tourism + Tripadvisor',
+
+    sourceUrl:
+    'https://www.tripadvisor.in/Attraction_Review-g2288598-d3731125-Reviews-Magnolia_Sunset_Point-Netarhat_Latehar_District_Jharkhand.html',
+
+    safety:
+    'Sunset time can be crowded. Use designated parking and walking areas.'
+},
+
+
+{
+    name:'Upper Ghaghri Waterfall',
+    cat:'waterfall',
+    type:'Waterfall',
+
+    loc:'Netarhat Area',
+
+    distance:
+    'About 4 km from Netarhat',
+
+    famous:
+    'Forest waterfall and trekking surroundings',
+
+    best:
+    'Nature • Trekking • Photography',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'Limited public review data',
+
+    img:
+    'https://indiano.travel/wp-content/uploads/2022/03/Upper-Ghaghri-Waterfall.jpg',
+
+    desc:
+    'Upper Ghaghri is a scenic waterfall and valley attraction near Netarhat with forest and trekking surroundings.',
+
+    source:
+    'Jharkhand Tourism',
+
+    sourceUrl:
+    'https://tourism.jharkhand.gov.in/how-to-reach/112/5',
+
+    safety:
+    'Use proper footwear and avoid slippery rocks during rain.'
+},
+
+
+{
+    name:'Lower Ghaghri Falls',
+    cat:'waterfall',
+    type:'Waterfall',
+
+    loc:'Netarhat Area',
+
+    distance:
+    'About 10 km from Netarhat',
+
+    famous:
+    'Large forest waterfall and dense greenery',
+
+    best:
+    'Nature • Photography • Adventure',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'No reliable current rating used',
+
+    img:
+    'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/8f/c7/14/lower-ghagri-falls.jpg?w=1200&h=1200&s=1',
+
+    desc:
+    'Lower Ghaghri is a waterfall around 10 km from Netarhat with dense forest surroundings.',
+
+    source:
+    'Jharkhand Forest Department',
+
+    sourceUrl:
+    'https://forest.jharkhand.gov.in/know-your-division_ptrsouth.aspx',
+
+    safety:
+    'Water levels and rock conditions can change quickly during monsoon.'
+},
+
+
+{
+    name:'Lodh Waterfall / Budha Ghagh',
+    cat:'waterfall',
+    type:'Waterfall',
+
+    loc:'Mahuadanr • Latehar District',
+
+    distance:
+    '142 km from Latehar HQ; about 61 km from Netarhat',
+
+    famous:
+    'Large waterfall, Burha River and dense forest',
+
+    best:
+    'Nature • Adventure • Photography',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'No reliable current attraction rating used',
+
+    img:
+   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShBlXkT4Ve4Ew1gqY4l1_dPPsV-ybxH8-uKGP45bLeLUHghJR8MwgxQ6k&s=10',
+    desc:
+    'Lodh Waterfall is one of Jharkhand’s major natural attractions and is located in the Mahuadanr area of Latehar district.',
+
+    source:
+    'Latehar District Administration',
+
+    sourceUrl:
+    'https://latehar.nic.in/tourist-place/lodh-waterfall-budha-ghagh/',
+
+    safety:
+    'Avoid heavy rainfall visits, do not swim near the base and never climb wet rocks.'
+},
+
+
+{
+    name:'Pear Orchard / Naspati Garden',
+    cat:'scenic',
+    type:'Nature',
+
+    loc:'Netarhat',
+
+    distance:
+    'About 86 km from Latehar district HQ',
+
+    famous:
+    'Asian pear cultivation and green orchard landscape',
+
+    best:
+    'Nature • Local Culture • Photography',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'No reliable current attraction rating used',
+
+    img:
+    'https://files.yappe.in/place/full/naspati-plants-9191551.webp',
+
+    desc:
+    'Netarhat is known for Asian pear cultivation, making pear gardens a distinctive part of the area.',
+
+    source:
+    'Jharkhand Tourism',
+
+    sourceUrl:
+    'https://tourism.jharkhand.gov.in/destinationDetails/172',
+
+    safety:
+    'Respect private and community agricultural land and ask before entering orchards.'
+},
+
+
+{
+    name:'Pine Forest',
+    cat:'scenic',
+    type:'Nature',
+
+    loc:'Netarhat',
+
+    distance:
+    'About 85 km from Latehar district HQ',
+
+    famous:
+    'Pine forest landscape and cool hill environment',
+
+    best:
+    'Nature Walk • Photography • Scenic Drive',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'No reliable current attraction rating used',
+
+    img:
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT98vmT-0mOpCHyhYeyhaqpnCDVGP7Vvnh7SXv7s6Ky8vuArAa5LMXIs_A&s=10',
+
+    desc:
+    'Pine Forest is listed among the major tourist places in the Netarhat area.',
+
+    source:
+    'Latehar District Tourism',
+
+    sourceUrl:
+    'https://latehar.nic.in/tourism/',
+
+    safety:
+    'Do not light fires or leave plastic and waste in forest areas.'
+},
+
+
+{
+    name:'Kanti Waterfall',
+    cat:'waterfall',
+    type:'Waterfall',
+
+    loc:'Chandwa • Latehar District',
+
+    distance:
+    'About 47 km from Latehar district HQ',
+
+    famous:
+    'Natural waterfall and forest setting',
+
+    best:
+    'Nature • Photography',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'No reliable current attraction rating used',
+
+    img:
+    'https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format=webp,w=720/QwRY54Li1HMwD7oNfoZMDl5X5cBo2GTl6NdijG3azi',
+
+    desc:
+    'Kanti Waterfall is listed by Latehar Tourism as a natural and scenic tourist place in Chandwa block.',
+
+    source:
+    'Latehar District Tourism',
+
+    sourceUrl:
+    'https://latehar.nic.in/tourism/',
+
+    safety:
+    'Avoid slippery rocks and fast water during monsoon.'
+},
+
+
+{
+    name:'Maa Ugratara Mandir',
+    cat:'culture',
+    type:'Temple',
+
+    loc:'Chandwa • Latehar District',
+
+    distance:
+    'About 37 km from Latehar district HQ',
+
+    famous:
+    'Religious and cultural heritage',
+
+    best:
+    'Culture • Spiritual Visit • Local Experience',
+
+    hygiene:
+    'No verified destination-level hygiene score published',
+
+    rating:
+    'No reliable current attraction rating used',
+
+    img:
+    'https://wpmedia.prabhatkhabar.com/uploads/2024/01/Jharkhand-news-99.jpg',
+
+    desc:
+    'Maa Ugratara Mandir is listed by Latehar Tourism as a religious and cultural tourist place in Chandwa block.',
+
+    source:
+    'Latehar District Tourism',
+
+    sourceUrl:
+    'https://latehar.nic.in/tourism/',
+
+    safety:
+    'Respect temple rules, local customs and photography restrictions.'
+}
+
+];
+
+
+/* ================= RENDER ================= */
+
+function render(list){
+
+    document.getElementById('countStat').textContent =
+        list.length;
+
+    document.getElementById('grid').innerHTML =
+
+        list.map((p) => `
+
+        <article class="card">
+
+            <div class="image">
+
+                <img
+                    src="${p.img}"
+                    alt="Real tourism photograph of ${p.name}"
+                    loading="lazy"
+                    onerror="this.style.opacity='.25'"
+                >
+
+                <span class="badge">
+                    ${p.type}
+                </span>
+
+                <span class="photo-source">
+                    REAL • GOVT SOURCE
+                </span>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <h3>
+                    ${p.name}
+                </h3>
+
+                <div class="loc">
+                    📍 ${p.loc}
+                </div>
+
+                <p class="desc">
+                    ${p.desc}
+                </p>
+
+
+                <div class="meta">
+
+                    <div>
+
+                        <small>
+                            Distance
+                        </small>
+
+                        <strong>
+                            ${p.distance}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            Famous For
+                        </small>
+
+                        <strong>
+                            ${p.famous}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hygiene-mini">
+
+                    🧼
+
+                    <b>
+                        Hygiene:
+                    </b>
+
+                    ${p.hygiene}
+
+                </div>
+
+
+                <div class="actions">
+
+                    <button
+                        class="details"
+                        onclick="openModal(${places.indexOf(p)})"
+                    >
+                        View Details
+                    </button>
+
+                    <button
+                        class="directions"
+                        onclick="route('${p.name}')"
+                    >
+                        Directions
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        `).join('');
+
+}
+
+
+/* ================= FILTER ================= */
+
+function filterPlaces(cat,btn){
+
+    document
+        .querySelectorAll('.filter')
+        .forEach(x =>
+            x.classList.remove('active')
+        );
+
+    btn.classList.add('active');
+
+    render(
+        cat === 'all'
+        ? places
+        : places.filter(
+            p => p.cat === cat
+        )
+    );
+}
+
+
+/* ================= SEARCH ================= */
+
+function searchPlaces(){
+
+    const input = document.getElementById('search');
+    const hint = document.getElementById('searchHint');
+
+    const q = input.value.toLowerCase().trim();
+
+    if(!q){
+        render(places);
+        hint.innerHTML = 'Press <b>Enter</b> or tap Search to jump to the destination.';
+        document.getElementById('destinations').scrollIntoView({
+            behavior:'smooth',
+            block:'start'
+        });
+        return;
+    }
+
+    const matches = places.filter(p => (
+        p.name + ' ' +
+        p.type + ' ' +
+        p.loc + ' ' +
+        p.famous + ' ' +
+        p.best + ' ' +
+        p.desc
+    ).toLowerCase().includes(q));
+
+    render(matches);
+
+    if(!matches.length){
+        hint.textContent = 'No destination found. Try “Betla”, “waterfall”, “fort”, “Netarhat” or “sunset”.';
+        document.getElementById('destinations').scrollIntoView({
+            behavior:'smooth',
+            block:'start'
+        });
+        return;
+    }
+
+    hint.innerHTML = '<b>' + matches.length + '</b> destination' +
+        (matches.length > 1 ? 's' : '') + ' found — opening the first match.';
+
+    requestAnimationFrame(() => {
+        const cards = document.querySelectorAll('#grid .card');
+        const firstCard = cards[0];
+
+        if(firstCard){
+            firstCard.scrollIntoView({
+                behavior:'smooth',
+                block:'center'
+            });
+
+            firstCard.classList.add('search-hit');
+
+            setTimeout(() => {
+                firstCard.classList.remove('search-hit');
+            }, 1400);
+        }
+    });
+}
+
+
+document
+    .getElementById('search')
+    .addEventListener('keydown', e => {
+        if(e.key === 'Enter'){
+            e.preventDefault();
+            searchPlaces();
+        }
+    });
+
+
+/* ================= MOBILE NAV ================= */
+
+function toggleMobileMenu(){
+    const menu = document.getElementById('mainNavLinks');
+    const toggle = document.getElementById('menuToggle');
+
+    if(!menu || !toggle) return;
+
+    const open = menu.classList.toggle('open');
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+function closeMobileMenu(){
+    const menu = document.getElementById('mainNavLinks');
+    const toggle = document.getElementById('menuToggle');
+
+    if(!menu || !toggle) return;
+
+    menu.classList.remove('open');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+}
+
+window.addEventListener('resize', () => {
+    if(window.innerWidth > 650){
+        closeMobileMenu();
+    }
+});
+
+
+/* ================= MODAL ================= */
+
+function openModal(i){
+
+    const p = places[i];
+
+    document.getElementById('mImg').src =
+        p.img;
+
+    document.getElementById('mTitle').textContent =
+        p.name;
+
+    document.getElementById('mLoc').textContent =
+        '📍 ' + p.loc;
+
+    document.getElementById('mDesc').textContent =
+        p.desc;
+
+    document.getElementById('mDistance').textContent =
+        p.distance;
+
+    document.getElementById('mFamous').textContent =
+        p.famous;
+
+    document.getElementById('mBest').textContent =
+        p.best;
+
+    document.getElementById('mHygiene').textContent =
+        p.hygiene;
+
+    document.getElementById('mRating').textContent =
+        p.rating;
+
+    document.getElementById('mSource').textContent =
+        p.source;
+
+
+    document.getElementById('mChips').innerHTML = `
+
+        <span class="chip">
+            ${p.type}
+        </span>
+
+        <span class="chip">
+            🌿 Eco Tourism
+        </span>
+
+        <span class="chip">
+            📸 Photography
+        </span>
+
+    `;
+
+
+    document.getElementById('mSourceBox').innerHTML = `
+
+        📚
+
+        <b>
+            Source:
+        </b>
+
+        <a
+            href="${p.sourceUrl}"
+            target="_blank"
+        >
+            Open verified information ↗
+        </a>
+
+    `;
+
+
+    document.getElementById('mSafety').innerHTML = `
+
+        ⚠️
+
+        <b>
+            Visitor Note:
+        </b>
+
+        ${p.safety}
+
+    `;
+
+
+    document
+        .getElementById('modal')
+        .classList.add('show');
+
+    document.body.style.overflow =
+        'hidden';
+
+}
+
+
+/* ================= CLOSE MODAL ================= */
+
+function closeModal(){
+
+    document
+        .getElementById('modal')
+        .classList.remove('show');
+
+    document.body.style.overflow =
+        '';
+
+}
+
+
+function outside(e){
+
+    if(e.target.id === 'modal'){
+        closeModal();
+    }
+
+}
+
+
+/* ================= GOOGLE MAP ================= */
+
+function route(name){
+
+    window.open(
+
+        'https://www.google.com/maps/search/?api=1&query=' +
+
+        encodeURIComponent(
+            name + ' Jharkhand'
+        ),
+
+        '_blank'
+
+    );
+
+}
+
+
+/* ================= ESCAPE KEY ================= */
+
+document.addEventListener(
+    'keydown',
+    e => {
+
+        if(e.key === 'Escape'){
+            closeModal();
+        }
+
+    }
+);
+
+
+/* ================= INITIAL LOAD ================= */
+
+render(places);
+
+
+/* ===== Navbar smooth navigation and active-link feedback ===== */
+(function initNavbarInteractions(){
+    const links = Array.from(document.querySelectorAll('#mainNavLinks a'));
+    const sectionLinks = links.filter(a => (a.getAttribute('href') || '').startsWith('#'));
+
+    function markActive(id){
+        links.forEach(a => {
+            const href = a.getAttribute('href') || '';
+            a.classList.toggle('nav-active', href === '#' + id);
+            if(href === '#' + id) a.setAttribute('aria-current','location');
+            else a.removeAttribute('aria-current');
+        });
+    }
+
+    sectionLinks.forEach(link => {
+        link.addEventListener('click', event => {
+            const id = (link.getAttribute('href') || '').slice(1);
+            const target = document.getElementById(id);
+            if(!target) return;
+            event.preventDefault();
+            closeMobileMenu();
+            markActive(id);
+            target.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+            history.replaceState(null, '', '#' + id);
+        });
+    });
+
+    if('IntersectionObserver' in window && sectionLinks.length){
+        const observer = new IntersectionObserver(entries => {
+            const visible = entries.filter(entry => entry.isIntersecting)
+                .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if(visible) markActive(visible.target.id);
+        }, {rootMargin:'-18% 0px -62% 0px', threshold:[0,.15,.35,.6]});
+        sectionLinks.forEach(link => {
+            const id = (link.getAttribute('href') || '').slice(1);
+            const section = document.getElementById(id);
+            if(section) observer.observe(section);
+        });
+    }
+
+    // Give every navbar link an immediate, polished click response.
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            link.classList.add('nav-clicked');
+            window.setTimeout(() => link.classList.remove('nav-clicked'), 260);
+        });
+    });
+})();
+
+</script>
+
+</body>
+</html>

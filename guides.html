@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Betla EcoCompanion | Local Guides</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:#f5f8f3;
+    color:#173a27;
+}
+
+/* ================= NAVBAR ================= */
+
+.guide-nav{
+    height:78px;
+    padding:0 5.5%;
+    background:
+    linear-gradient(110deg,
+    rgba(3,29,17,.97),
+    rgba(8,58,32,.90),
+    rgba(7,43,25,.96));
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid rgba(220,245,190,.14);
+    box-shadow:0 10px 35px rgba(0,0,0,.22);
+    backdrop-filter:blur(18px);
+}
+
+.guide-nav::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-1px;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #c9ed78,
+        transparent
+    );
+    opacity:.55;
+}
+
+.nav-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:46px;
+    height:46px;
+    display:grid;
+    place-items:center;
+    border-radius:15px;
+    background:linear-gradient(
+        145deg,
+        #eaffb9,
+        #a9d95e
+    );
+    color:#174b2c;
+    font-size:23px;
+    box-shadow:
+    0 0 0 5px rgba(201,237,120,.08),
+    0 8px 24px rgba(0,0,0,.25);
+}
+
+.nav-logo h2{
+    font-size:19px;
+    line-height:1.1;
+}
+
+.nav-logo small{
+    color:#c9d9cd;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.nav-menu{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.nav-menu a{
+    color:rgba(255,255,255,.86);
+    text-decoration:none;
+    font-size:12px;
+    font-weight:700;
+    padding:10px 13px;
+    border-radius:22px;
+    transition:.3s;
+}
+
+.nav-menu a:hover{
+    background:rgba(255,255,255,.1);
+    color:#dff2a7;
+    transform:translateY(-2px);
+}
+
+.back-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid rgba(223,242,167,.35);
+    background:linear-gradient(
+        135deg,
+        rgba(223,242,167,.18),
+        rgba(255,255,255,.06)
+    );
+    color:white;
+    padding:10px 17px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#dff2a7;
+    color:#174b2c;
+    transform:translateY(-2px);
+}
+
+.mobile-toggle{
+    display:none;
+}
+
+/* ================= HERO ================= */
+
+.guide-hero{
+    min-height:620px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    isolation:isolate;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(1,20,11,.94) 0%,
+        rgba(3,39,21,.72) 43%,
+        rgba(3,39,21,.22) 100%
+    ),
+    linear-gradient(
+        0deg,
+        rgba(1,20,11,.72) 0%,
+        transparent 48%
+    ),
+    url("https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1900&q=92");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.guide-hero::before{
+    content:"";
+    position:absolute;
+    inset:-3%;
+    background:inherit;
+    background-size:cover;
+    background-position:center;
+    z-index:-2;
+    animation:heroZoom 14s ease-in-out infinite alternate;
+}
+
+.guide-hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at 78% 28%,
+        rgba(201,237,120,.19),
+        transparent 22%
+    ),
+    radial-gradient(
+        circle at 88% 72%,
+        rgba(112,180,89,.13),
+        transparent 25%
+    ),
+    linear-gradient(
+        transparent 58%,
+        rgba(1,20,11,.62)
+    );
+
+    pointer-events:none;
+    z-index:0;
+}
+
+.hero-content{
+    width:86%;
+    max-width:1200px;
+    margin:auto;
+    color:white;
+    position:relative;
+    z-index:3;
+    padding:55px 0 85px;
+    animation:heroIn .95s ease both;
+}
+
+.hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 15px;
+    border-radius:30px;
+    background:rgba(220,245,190,.10);
+    border:1px solid rgba(220,245,190,.38);
+    color:#dff2a7;
+    font-size:11px;
+    letter-spacing:1.8px;
+    backdrop-filter:blur(10px);
+}
+
+.hero-content h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(45px,6.5vw,80px);
+    line-height:1.01;
+    margin:23px 0 18px;
+    letter-spacing:-2.5px;
+    text-shadow:0 8px 35px rgba(0,0,0,.35);
+}
+
+.hero-content h1 span{
+    color:#c9ed78;
+}
+
+.hero-content p{
+    max-width:620px;
+    font-size:17px;
+    line-height:1.7;
+    color:rgba(255,255,255,.86);
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.primary-btn,
+.outline-btn{
+    padding:14px 21px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:700;
+    transition:.3s;
+}
+
+.primary-btn{
+    background:linear-gradient(
+        135deg,
+        #e7f8ad,
+        #b9df6a
+    );
+    color:#143c23;
+    border:none;
+    box-shadow:0 12px 28px rgba(0,0,0,.18);
+}
+
+.primary-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(210,241,143,.3);
+}
+
+.outline-btn{
+    background:rgba(255,255,255,.07);
+    color:white;
+    border:1px solid rgba(255,255,255,.5);
+    backdrop-filter:blur(8px);
+}
+
+.outline-btn:hover{
+    background:white;
+    color:#173a27;
+    transform:translateY(-3px);
+}
+
+.hero-bottom-line{
+    position:absolute;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%);
+    z-index:3;
+    color:rgba(255,255,255,.62);
+    font-size:10px;
+    letter-spacing:2px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+/* Floating leaves */
+
+.leaf{
+    position:absolute;
+    color:rgba(220,245,190,.12);
+    z-index:2;
+}
+
+.leaf.one{
+    right:12%;
+    top:18%;
+    font-size:80px;
+    transform:rotate(25deg);
+}
+
+.leaf.two{
+    right:25%;
+    bottom:18%;
+    font-size:50px;
+    transform:rotate(-35deg);
+}
+
+.leaf.three{
+    left:42%;
+    top:15%;
+    font-size:35px;
+}
+
+/* ================= QUICK INFO ================= */
+
+.quick-info{
+    width:86%;
+    max-width:1200px;
+    margin:-45px auto 0;
+    position:relative;
+    z-index:10;
+
+    display:grid;
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+}
+
+.info-card{
+    background:rgba(255,255,255,.96);
+    border:1px solid #e2ebdf;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 15px 45px rgba(25,70,40,.10);
+    transition:.3s;
+}
+
+.info-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 50px rgba(25,70,40,.16);
+}
+
+.info-icon{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    background:#eaf5dc;
+    color:#3e7b42;
+    margin-bottom:14px;
+}
+
+.info-card h4{
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+.info-card p{
+    font-size:12px;
+    color:#6a7c70;
+}
+
+/* ================= COMMON ================= */
+
+.section{
+    width:86%;
+    max-width:1200px;
+    margin:100px auto;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-heading span{
+    color:#639b42;
+    font-size:11px;
+    letter-spacing:3px;
+    font-weight:800;
+}
+
+.section-heading h2{
+    font-family:"Playfair Display",serif;
+    font-size:42px;
+    margin:10px 0;
+}
+
+.section-heading p{
+    max-width:650px;
+    margin:auto;
+    color:#718177;
+    line-height:1.7;
+    font-size:14px;
+}
+
+/* ================= FILTER ================= */
+
+.filters{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:30px;
+}
+
+.filter-btn{
+    border:1px solid #d7e4d5;
+    background:white;
+    color:#47624e;
+    padding:10px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+    background:#1d5734;
+    color:white;
+    border-color:#1d5734;
+}
+
+/* ================= GUIDE CARDS ================= */
+
+.guides-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(4,1fr);
+    gap:20px;
+}
+
+.guide-card{
+    background:white;
+    border-radius:23px;
+    overflow:hidden;
+    border:1px solid #e2ebe0;
+    box-shadow:0 12px 40px rgba(22,70,40,.08);
+    transition:.35s;
+}
+
+.guide-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 55px rgba(22,70,40,.15);
+}
+
+.guide-image{
+    height:245px;
+    position:relative;
+    overflow:hidden;
+}
+
+.guide-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.guide-card:hover .guide-image img{
+    transform:scale(1.08);
+}
+
+.verified{
+    position:absolute;
+    top:13px;
+    right:13px;
+    background:rgba(255,255,255,.94);
+    color:#357542;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:800;
+}
+
+.guide-body{
+    padding:20px;
+}
+
+.guide-body h3{
+    font-size:19px;
+    margin-bottom:5px;
+}
+
+.role{
+    color:#659349;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:14px;
+}
+
+.rating{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size:12px;
+    margin-bottom:14px;
+}
+
+.rating i{
+    color:#f3b936;
+}
+
+.guide-meta{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.meta{
+    background:#f4f8f2;
+    border-radius:12px;
+    padding:9px;
+    font-size:10px;
+    color:#607467;
+}
+
+.meta i{
+    color:#5e9145;
+    margin-right:4px;
+}
+
+.guide-actions{
+    display:flex;
+    gap:8px;
+}
+
+.guide-actions button,
+.call-btn{
+    flex:1;
+    padding:11px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:11px;
+}
+
+.profile-btn{
+    background:#eef5e9;
+    color:#315c3d;
+    border:1px solid #dce8d8;
+}
+
+.call-btn{
+    text-decoration:none;
+    text-align:center;
+    background:#1d5734;
+    color:white;
+    border:1px solid #1d5734;
+}
+
+/* ================= VISITOR INFO ================= */
+
+.visitor-section{
+    background:
+    linear-gradient(
+        135deg,
+        #173d27,
+        #285e39
+    );
+    color:white;
+    padding:80px 7%;
+    margin-top:100px;
+}
+
+.visitor-inner{
+    max-width:1200px;
+    margin:auto;
+}
+
+.visitor-heading{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.visitor-heading span{
+    color:#c9ed78;
+    font-size:11px;
+    letter-spacing:3px;
+}
+
+.visitor-heading h2{
+    font-family:"Playfair Display",serif;
+    font-size:42px;
+    margin:10px 0;
+}
+
+.visitor-heading p{
+    max-width:650px;
+    margin:auto;
+    color:#cbdacd;
+    line-height:1.7;
+}
+
+.visitor-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(3,1fr);
+    gap:20px;
+}
+
+.visitor-card{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:22px;
+    padding:27px;
+    backdrop-filter:blur(10px);
+}
+
+.visitor-card i{
+    font-size:27px;
+    color:#c9ed78;
+    margin-bottom:18px;
+}
+
+.visitor-card h3{
+    margin-bottom:10px;
+}
+
+.visitor-card p{
+    color:#cbdacd;
+    line-height:1.7;
+    font-size:13px;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+    width:86%;
+    max-width:1200px;
+    margin:100px auto;
+    border-radius:30px;
+    padding:65px;
+    text-align:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #eaf6d9,
+        #f8fbf4
+    );
+
+    border:1px solid #d9e7d0;
+}
+
+.cta h2{
+    font-family:"Playfair Display",serif;
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.cta p{
+    color:#68786d;
+    margin-bottom:25px;
+}
+
+/* ================= EMERGENCY ================= */
+
+.emergency{
+    width:86%;
+    max-width:1200px;
+    margin:80px auto;
+    border-radius:25px;
+    padding:30px;
+    background:#fff5f3;
+    border:1px solid #ffd9d2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+.emergency-left{
+    display:flex;
+    align-items:center;
+    gap:17px;
+}
+
+.emergency-icon{
+    width:55px;
+    height:55px;
+    display:grid;
+    place-items:center;
+    border-radius:18px;
+    background:#ffe1dc;
+    color:#c94332;
+    font-size:23px;
+}
+
+.emergency h3{
+    margin-bottom:5px;
+}
+
+.emergency p{
+    color:#8b7773;
+    font-size:12px;
+}
+
+.emergency-btn{
+    background:#c94332;
+    color:white;
+    text-decoration:none;
+    padding:13px 20px;
+    border-radius:30px;
+    font-weight:800;
+    font-size:12px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(2,20,11,.72);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:470px;
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
+    animation:modalIn .3s ease;
+}
+
+.close-modal{
+    position:absolute;
+    right:17px;
+    top:17px;
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:50%;
+    background:#eef5e9;
+    color:#315c3d;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.modal-box h2{
+    font-family:"Playfair Display",serif;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.modal-box p{
+    color:#718177;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#082717;
+    color:white;
+    padding:45px 7%;
+    text-align:center;
+}
+
+footer h3{
+    font-size:20px;
+    margin-bottom:7px;
+}
+
+footer p{
+    color:#a9bbb0;
+    font-size:12px;
+    margin:5px;
+}
+
+.footer-bottom{
+    margin-top:25px;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.1);
+    color:#7f9587;
+    font-size:10px;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes heroZoom{
+    from{
+        transform:scale(1.03);
+    }
+    to{
+        transform:scale(1.12);
+    }
+}
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+
+    .quick-info{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .guides-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:900px){
+
+    .nav-menu{
+        gap:3px;
+    }
+
+    .nav-menu a{
+        padding:9px 8px;
+        font-size:11px;
+    }
+
+    .back-btn{
+        padding:9px 12px;
+        font-size:11px;
+    }
+
+    .visitor-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .guide-nav{
+        height:70px;
+        padding:0 5%;
+    }
+
+    .nav-logo h2{
+        font-size:16px;
+    }
+
+    .nav-logo small{
+        font-size:7px;
+    }
+
+    .nav-menu{
+        display:none;
+        position:absolute;
+        left:4%;
+        right:4%;
+        top:78px;
+        padding:12px;
+        background:rgba(5,38,22,.98);
+        border:1px solid rgba(223,242,167,.16);
+        border-radius:18px;
+        box-shadow:0 18px 45px rgba(0,0,0,.28);
+        flex-direction:column;
+        align-items:stretch;
+        backdrop-filter:blur(18px);
+    }
+
+    .nav-menu.open{
+        display:flex;
+    }
+
+    .nav-menu a{
+        text-align:center;
+        padding:12px;
+    }
+
+    .back-btn{
+        justify-content:center;
+        width:100%;
+    }
+
+    .mobile-toggle{
+        display:grid;
+        place-items:center;
+        width:43px;
+        height:43px;
+        border-radius:13px;
+        border:1px solid rgba(255,255,255,.2);
+        background:rgba(255,255,255,.08);
+        color:white;
+        font-size:18px;
+        cursor:pointer;
+    }
+
+    .guide-hero{
+        min-height:590px;
+        background-position:58% center;
+    }
+
+    .hero-content{
+        width:90%;
+        padding:50px 0 80px;
+    }
+
+    .hero-content h1{
+        font-size:43px;
+        letter-spacing:-1px;
+    }
+
+    .hero-content p{
+        font-size:14px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        width:220px;
+    }
+
+    .hero-bottom-line{
+        bottom:18px;
+        font-size:8px;
+    }
+
+    .quick-info{
+        width:90%;
+        grid-template-columns:1fr 1fr;
+        margin-top:-30px;
+    }
+
+    .section{
+        width:90%;
+        margin:75px auto;
+    }
+
+    .section-heading h2,
+    .visitor-heading h2{
+        font-size:32px;
+    }
+
+    .guides-grid{
+        grid-template-columns:1fr;
+    }
+
+    .visitor-section{
+        padding:65px 5%;
+    }
+
+    .cta{
+        width:90%;
+        padding:45px 25px;
+    }
+
+    .cta h2{
+        font-size:30px;
+    }
+
+    .emergency{
+        width:90%;
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .emergency-btn{
+        text-align:center;
+    }
+
+}
+
+@media(max-width:430px){
+
+    .quick-info{
+        grid-template-columns:1fr;
+    }
+
+    .hero-content h1{
+        font-size:39px;
+    }
+
+    .guide-image{
+        height:230px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="guide-nav">
+
+    <div class="nav-logo">
+
+        <span class="logo-icon">
+            🌿
+        </span>
+
+        <div>
+            <h2>EcoCompanion</h2>
+            <small>BETLA & PALAMU</small>
+        </div>
+
+    </div>
+
+    <div class="nav-menu" id="navMenu">
+
+        <a href="#guidesSection">
+            Guides
+        </a>
+
+        <a href="#visitorInfo">
+            Visitor Info
+        </a>
+
+        <a href="#emergencySection">
+            Emergency
+        </a>
+
+        <button class="back-btn" onclick="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Home
+        </button>
+
+    </div>
+
+    <button
+        class="mobile-toggle"
+        id="mobileToggle"
+        aria-label="Open menu">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="guide-hero">
+
+    <i class="fa-solid fa-leaf leaf one"></i>
+    <i class="fa-solid fa-leaf leaf two"></i>
+    <i class="fa-solid fa-seedling leaf three"></i>
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+
+            <i class="fa-solid fa-compass"></i>
+
+            YOUR BETLA TRAVEL GUIDE
+
+        </span>
+
+        <h1>
+            Meet the People
+            <br>
+            <span>Who Know the Wild.</span>
+        </h1>
+
+        <p>
+
+            Explore Betla National Park with trusted local guides.
+            Discover wildlife, safari trails, forest stories and local
+            culture with someone who truly knows the reserve.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="primary-btn"
+                onclick="scrollToGuides()">
+
+                <i class="fa-solid fa-user-group"></i>
+
+                Find a Guide
+
+            </button>
+
+            <button
+                class="outline-btn"
+                onclick="scrollToInfo()">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                Visitor Information
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="hero-bottom-line">
+
+        <i class="fa-solid fa-chevron-down"></i>
+
+        SCROLL TO EXPLORE
+
+    </div>
+
+</section>
+
+
+<!-- ================= QUICK INFO ================= -->
+
+<div class="quick-info">
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            <i class="fa-regular fa-calendar"></i>
+        </div>
+
+        <h4>Best Season</h4>
+
+        <p>
+            November – March
+        </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-binoculars"></i>
+        </div>
+
+        <h4>Safari</h4>
+
+        <p>
+            Morning & Evening
+        </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-user-check"></i>
+        </div>
+
+        <h4>Local Guides</h4>
+
+        <p>
+            Verified Experts
+        </p>
+
+    </div>
+
+
+    <div
+        class="info-card"
+        onclick="showEmergency()"
+        style="cursor:pointer;">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+
+        <h4>Emergency</h4>
+
+        <p>
+            Need Help?
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= GUIDES ================= -->
+
+<section
+    class="section"
+    id="guidesSection">
+
+    <div class="section-heading">
+
+        <span>
+            LOCAL EXPERTS
+        </span>
+
+        <h2>
+            Choose Your Local Guide
+        </h2>
+
+        <p>
+            Connect with people who understand the forest,
+            wildlife and culture of Betla.
+        </p>
+
+    </div>
+
+
+    <div class="filters">
+
+        <button
+            class="filter-btn active"
+            onclick="filterGuides('all',this)">
+
+            All
+
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGuides('wildlife',this)">
+
+            Wildlife
+
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGuides('culture',this)">
+
+            Culture
+
+        </button>
+
+        <button
+            class="filter-btn"
+            onclick="filterGuides('safari',this)">
+
+            Safari
+
+        </button>
+
+    </div>
+
+
+    <div class="guides-grid">
+
+
+        <!-- GUIDE 1 -->
+
+        <div
+            class="guide-card"
+            data-type="wildlife safari">
+
+            <div class="guide-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1000&q=85"
+                alt="Local Wildlife Guide">
+
+                <span class="verified">
+
+                    <i class="fa-solid fa-circle-check"></i>
+                    Verified
+
+                </span>
+
+            </div>
+
+            <div class="guide-body">
+
+                <h3>
+                    Arjun Kumar
+                </h3>
+
+                <div class="role">
+                    Wildlife & Safari Guide
+                </div>
+
+                <div class="rating">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <strong>4.9</strong>
+
+                    <span>
+                        (86 reviews)
+                    </span>
+
+                </div>
+
+                <div class="guide-meta">
+
+                    <div class="meta">
+                        <i class="fa-solid fa-clock"></i>
+                        8+ years
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-language"></i>
+                        Hindi • English
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-binoculars"></i>
+                        Safari
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Verified
+                    </div>
+
+                </div>
+
+                <div class="guide-actions">
+
+                    <button
+                        class="profile-btn"
+                        onclick="openGuide(
+                        'Arjun Kumar',
+                        'Wildlife & Safari Guide',
+                        '8+ years of experience'
+                        )">
+
+                        View Profile
+
+                    </button>
+
+                    <a
+                        class="call-btn"
+                        href="tel:+919876543210">
+
+                        <i class="fa-solid fa-phone"></i>
+                        Call
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- GUIDE 2 -->
+
+        <div
+            class="guide-card"
+            data-type="culture">
+
+            <div class="guide-image">
+
+                <img 
+             src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=900&q=90"
+             alt="Indian Village Culture and Local Community"
+               >
+
+                <span class="verified">
+
+                    <i class="fa-solid fa-circle-check"></i>
+                    Verified
+
+                </span>
+
+            </div>
+
+            <div class="guide-body">
+
+                <h3>
+                    Meena Devi
+                </h3>
+
+                <div class="role">
+                    Culture & Village Guide
+                </div>
+
+                <div class="rating">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <strong>4.8</strong>
+
+                    <span>
+                        (64 reviews)
+                    </span>
+
+                </div>
+
+                <div class="guide-meta">
+
+                    <div class="meta">
+                        <i class="fa-solid fa-clock"></i>
+                        6+ years
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-language"></i>
+                        Hindi • English
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-house"></i>
+                        Local Life
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Verified
+                    </div>
+
+                </div>
+
+                <div class="guide-actions">
+
+                    <button
+                        class="profile-btn"
+                        onclick="openGuide(
+                        'Meena Devi',
+                        'Culture & Village Guide',
+                        '6+ years of experience'
+                        )">
+
+                        View Profile
+
+                    </button>
+
+                    <a
+                        class="call-btn"
+                        href="tel:+919876543211">
+
+                        <i class="fa-solid fa-phone"></i>
+                        Call
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- GUIDE 3 -->
+
+        <div
+            class="guide-card"
+            data-type="safari wildlife">
+
+            <div class="guide-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1000&q=85"
+                alt="Safari Route Guide">
+
+                <span class="verified">
+
+                    <i class="fa-solid fa-circle-check"></i>
+                    Verified
+
+                </span>
+
+            </div>
+
+            <div class="guide-body">
+
+                <h3>
+                    Ravi Singh
+                </h3>
+
+                <div class="role">
+                    Safari Route Specialist
+                </div>
+
+                <div class="rating">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <strong>4.9</strong>
+
+                    <span>
+                        (91 reviews)
+                    </span>
+
+                </div>
+
+                <div class="guide-meta">
+
+                    <div class="meta">
+                        <i class="fa-solid fa-clock"></i>
+                        10+ years
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-language"></i>
+                        Hindi • English
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-car"></i>
+                        Safari
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Verified
+                    </div>
+
+                </div>
+
+                <div class="guide-actions">
+
+                    <button
+                        class="profile-btn"
+                        onclick="openGuide(
+                        'Ravi Singh',
+                        'Safari Route Specialist',
+                        '10+ years of experience'
+                        )">
+
+                        View Profile
+
+                    </button>
+
+                    <a
+                        class="call-btn"
+                        href="tel:+919876543212">
+
+                        <i class="fa-solid fa-phone"></i>
+                        Call
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- GUIDE 4 -->
+
+        <div
+            class="guide-card"
+            data-type="wildlife culture">
+
+            <div class="guide-image">
+
+                <img
+                src="https://images.unsplash.com/photo-1535338454770-8be927b5a00b?auto=format&fit=crop&w=1000&q=85"
+                alt="Forest Culture Guide">
+
+                <span class="verified">
+
+                    <i class="fa-solid fa-circle-check"></i>
+                    Verified
+
+                </span>
+
+            </div>
+
+            <div class="guide-body">
+
+                <h3>
+                    Sanjay Oraon
+                </h3>
+
+                <div class="role">
+                    Forest & Tribal Culture Guide
+                </div>
+
+                <div class="rating">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <strong>4.7</strong>
+
+                    <span>
+                        (52 reviews)
+                    </span>
+
+                </div>
+
+                <div class="guide-meta">
+
+                    <div class="meta">
+                        <i class="fa-solid fa-clock"></i>
+                        7+ years
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-language"></i>
+                        Hindi • English
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-tree"></i>
+                        Forest
+                    </div>
+
+                    <div class="meta">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Verified
+                    </div>
+
+                </div>
+
+                <div class="guide-actions">
+
+                    <button
+                        class="profile-btn"
+                        onclick="openGuide(
+                        'Sanjay Oraon',
+                        'Forest & Tribal Culture Guide',
+                        '7+ years of experience'
+                        )">
+
+                        View Profile
+
+                    </button>
+
+                    <a
+                        class="call-btn"
+                        href="tel:+919876543213">
+
+                        <i class="fa-solid fa-phone"></i>
+                        Call
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= VISITOR INFO ================= -->
+
+<section
+    class="visitor-section"
+    id="visitorInfo">
+
+    <div class="visitor-inner">
+
+        <div class="visitor-heading">
+
+            <span>
+                PLAN YOUR VISIT
+            </span>
+
+            <h2>
+                Visitor Information
+            </h2>
+
+            <p>
+                A few simple tips can make your Betla
+                experience safer, easier and more memorable.
+            </p>
+
+        </div>
+
+
+        <div class="visitor-grid">
+
+            <div class="visitor-card">
+
+                <i class="fa-solid fa-jeep"></i>
+
+                <h3>
+                    Safari Planning
+                </h3>
+
+                <p>
+                    Choose your safari slot in advance.
+                    Morning and evening safaris offer
+                    different wildlife experiences.
+                </p>
+
+            </div>
+
+
+            <div class="visitor-card">
+
+                <i class="fa-solid fa-leaf"></i>
+
+                <h3>
+                    Respect Nature
+                </h3>
+
+                <p>
+                    Do not litter, feed animals or disturb
+                    wildlife. Follow forest department
+                    instructions at all times.
+                </p>
+
+            </div>
+
+
+            <div class="visitor-card">
+
+                <i class="fa-solid fa-camera"></i>
+
+                <h3>
+                    Be Wildlife Ready
+                </h3>
+
+                <p>
+                    Carry water, comfortable clothing,
+                    binoculars and a camera. Keep your
+                    surroundings quiet.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <h2>
+        Want a more personal Betla experience?
+    </h2>
+
+    <p>
+        Meet a local expert and discover Betla beyond
+        the usual tourist route.
+    </p>
+
+    <button
+        class="primary-btn"
+        onclick="scrollToGuides()">
+
+        <i class="fa-solid fa-user-group"></i>
+
+        Find My Guide
+
+    </button>
+
+</section>
+
+
+<!-- ================= EMERGENCY ================= -->
+
+<section
+    class="emergency"
+    id="emergencySection">
+
+    <div class="emergency-left">
+
+        <div class="emergency-icon">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+        <div>
+
+            <h3>
+                Need Emergency Help?
+            </h3>
+
+            <p>
+                For immediate emergency assistance,
+                call India's emergency number.
+            </p>
+
+        </div>
+
+    </div>
+
+    <a
+        href="tel:112"
+        class="emergency-btn">
+
+        <i class="fa-solid fa-phone"></i>
+
+        Call 112
+
+    </a>
+
+</section>
+
+
+<!-- ================= GUIDE MODAL ================= -->
+
+<div
+    class="modal"
+    id="guideModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close-modal"
+            onclick="closeGuide()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <h2 id="modalGuideName">
+            Guide Profile
+        </h2>
+
+        <p id="modalGuideInfo">
+            Guide information
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h3>
+        🌿 Betla & Palamu EcoCompanion
+    </h3>
+
+    <p>
+        Smart Eco-Tourism Platform • Hackathon 2026
+    </p>
+
+    <p>
+        Explore the Wild. Protect the Future.
+    </p>
+
+    <div class="footer-bottom">
+
+        © 2026 Betla & Palamu EcoCompanion.
+        Built for responsible eco-tourism.
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* ================= MOBILE MENU ================= */
+
+const mobileToggle =
+document.getElementById("mobileToggle");
+
+const navMenu =
+document.getElementById("navMenu");
+
+if(mobileToggle && navMenu){
+
+    mobileToggle.addEventListener("click",()=>{
+
+        navMenu.classList.toggle("open");
+
+        mobileToggle.innerHTML =
+        navMenu.classList.contains("open")
+        ?
+        '<i class="fa-solid fa-xmark"></i>'
+        :
+        '<i class="fa-solid fa-bars"></i>';
+
+    });
+
+    navMenu
+    .querySelectorAll("a,button")
+    .forEach(item=>{
+
+        item.addEventListener("click",()=>{
+
+            navMenu.classList.remove("open");
+
+            mobileToggle.innerHTML =
+            '<i class="fa-solid fa-bars"></i>';
+
+        });
+
+    });
+
+}
+
+
+/* ================= BACK TO HOME ================= */
+
+function goBack(){
+
+    if(document.referrer){
+
+        history.back();
+
+    }else{
+
+        window.location.href="deo.html";
+
+    }
+
+}
+
+
+/* ================= SCROLL ================= */
+
+function scrollToGuides(){
+
+    document
+    .getElementById("guidesSection")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function scrollToInfo(){
+
+    document
+    .getElementById("visitorInfo")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function showEmergency(){
+
+    document
+    .getElementById("emergencySection")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ================= GUIDE MODAL ================= */
+
+function openGuide(
+    name,
+    role,
+    experience
+){
+
+    document
+    .getElementById("modalGuideName")
+    .textContent=name;
+
+    document
+    .getElementById("modalGuideInfo")
+    .innerHTML=
+
+    "<strong>"+role+
+    "</strong><br><br>"+
+    experience+
+    "<br><br>"+
+    "This guide is verified for the Betla EcoCompanion platform. "+
+    "You can contact the guide directly for availability and visitor assistance.";
+
+    document
+    .getElementById("guideModal")
+    .classList.add("show");
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+function closeGuide(){
+
+    document
+    .getElementById("guideModal")
+    .classList.remove("show");
+
+    document.body.style.overflow="";
+
+}
+
+
+document
+.getElementById("guideModal")
+.addEventListener("click",function(e){
+
+    if(e.target===this){
+
+        closeGuide();
+
+    }
+
+});
+
+
+/* ================= FILTER GUIDES ================= */
+
+function filterGuides(type,button){
+
+    document
+    .querySelectorAll(".filter-btn")
+    .forEach(btn=>{
+
+        btn.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+
+    document
+    .querySelectorAll(".guide-card")
+    .forEach(card=>{
+
+        const cardType =
+        card.dataset.type;
+
+        if(
+            type==="all" ||
+            cardType.includes(type)
+        ){
+
+            card.style.display="";
+
+            card.style.animation=
+            "cardIn .5s ease both";
+
+        }else{
+
+            card.style.display="none";
+
+        }
+
+    });
+
+}
+
+
+/* ================= ESCAPE MODAL ================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key==="Escape"){
+
+            closeGuide();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
